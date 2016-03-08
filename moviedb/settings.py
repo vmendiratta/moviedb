@@ -8,7 +8,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 import os
-import sys
 
 from configurations import Configuration, values
 
@@ -46,7 +45,7 @@ class Common(Configuration):
 
         'django_extensions',
         'debug_toolbar',
-        
+
         'movies',
     ]
 
@@ -118,7 +117,7 @@ class Common(Configuration):
     USE_L10N = True
 
     USE_TZ = True
-    
+
     MEDIA_URL = '/media/'
 
     # Static files (CSS, JavaScript, Images)

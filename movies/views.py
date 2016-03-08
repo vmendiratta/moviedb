@@ -1,5 +1,4 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
@@ -48,7 +47,7 @@ class MovieCreateView(CreateView):
         self.object = form.save()
         character_form.instance = self.object
         character_form.save()
-        return HttpResponseRedirect(self.get_success_url()%self.object.pk)
+        return HttpResponseRedirect(self.get_success_url() % self.object.pk)
 
     def form_invalid(self, form, character_form):
         """

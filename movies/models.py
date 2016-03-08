@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 
+from django.core.urlresolvers import reverse
 from django.db import models
 
 from . import choices
@@ -11,7 +12,7 @@ class Genre(models.Model):
     name = models.CharField(max_length=100)
     added_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
-    
+
     def __unicode__(self):
         return self.name
 
@@ -22,7 +23,7 @@ class Actor(models.Model):
     gender = models.SmallIntegerField(choices=choices.GENDER)
     added_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
-    
+
     def __unicode__(self):
         return self.name
 
@@ -39,7 +40,7 @@ class Movie(models.Model):
 
     def get_absolute_url(self):
         return reverse('movie-detail', kwargs={'pk': self.pk})
-    
+
     def __unicode__(self):
         return self.name
 
@@ -48,6 +49,6 @@ class Character(models.Model):
     movie = models.ForeignKey(Movie)
     actor = models.ForeignKey(Actor)
     name = models.CharField(max_length=50)
-    
+
     def __unicode__(self):
-        return "%s - %s"%(self.actor, self.name)
+        return "%s - %s" % (self.actor, self.name)
