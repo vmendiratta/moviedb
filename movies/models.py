@@ -9,7 +9,7 @@ from . import choices
 # Create your models here.
 
 class Genre(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     added_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
@@ -31,8 +31,8 @@ class Actor(models.Model):
 class Movie(models.Model):
     genre = models.ManyToManyField(Genre)
     name = models.CharField(max_length=100)
-    tagline = models.CharField(max_length=100)
-    alternate_name = models.CharField(max_length=100)
+    tagline = models.CharField(max_length=100, null=True, blank=True)
+    alternate_name = models.CharField(max_length=100, null=True, blank=True)
     release_date = models.DateField()
     plot = models.TextField(max_length=5000)
     added_on = models.DateTimeField(auto_now_add=True)
@@ -51,4 +51,4 @@ class Character(models.Model):
     name = models.CharField(max_length=50)
 
     def __unicode__(self):
-        return "%s - %s" % (self.actor, self.name)
+        return "%s as %s" % (self.actor, self.name)

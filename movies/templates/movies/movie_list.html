@@ -1,7 +1,7 @@
 <h1>Movies</h1>
 <ul>
 {% for movie in object_list %}
-    <li>{{ movie.release_date|date }} - {{ movie.name }}</li>
+    <li>{{ movie.name }} - {{ movie.release_date }} - {{ movie.character_set.all|join:", "}}</li>
 {% empty %}
     <li>No movies yet.</li>
 {% endfor %}
