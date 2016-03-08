@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multiformset Demo</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/media/js/jquery.formset.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $(".inline.{{ character_form.prefix }}").formset({
+                prefix: "{{ character_form.prefix }}",
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div>
+        <h1>Add Recipe</h1>
+        <form action="." method="post">
+            {% csrf_token %}
+            <div>
+                <p>
+                    {{ form.name.errors }}
+                    {{ form.name.label_tag }}
+                    {{ form.name }}
+                    {{ form.tagline.errors }}
+                    {{ form.tagline.label_tag }}
+                    {{ form.tagline }}
+                </p>
+                <p>
+                    {{ form.alternate_name.errors }}
+                    {{ form.alternate_name.label_tag }}
+                    {{ form.alternate_name }}
+                    {{ form.release_date.errors }}
+                    {{ form.release_date.label_tag }}
+                    {{ form.release_date }}
+                </p>
+                <p>
+                    {{ form.plot.errors }}
+                    {{ form.plot.label_tag }}
+                    {{ form.plot }}
+                    {{ form.genre.errors }}
+                    {{ form.genre.label_tag }}
+                    {{ form.genre }}
+                </p>
+            </div>
+            <fieldset>
+                <legend>Movie Character</legend>
+                {{ character_form.management_form }}
+                {{ character_form.non_form_errors }}
+                {% for form in character_form %}
+                    {{ form.id }}
+                    <div class="inline {{ character_form.prefix }}">
+                        {{ form.actor.errors }}
+                        {{ form.actor.label_tag }}
+                        {{ form.actor }}
+                        {{ form.name.errors }}
+                        {{ form.name.label_tag }}
+                        {{ form.name }}
+                    </div>
+                {% endfor %}
+            </fieldset>
+            <input type="submit" value="Add movie" class="submit" />
+        </form>
+    </div>
+</body>
+</html>

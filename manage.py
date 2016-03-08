@@ -4,7 +4,6 @@ import sys
 
 import dotenv
 
-
 dotenv.read_dotenv()
 
 

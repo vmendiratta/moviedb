@@ -8,13 +8,24 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 import os
+import sys
 
 from configurations import Configuration, values
 
 
 class Common(Configuration):
-    # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-    BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+    # Fetch Django's project directory
+    DJANGO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+    # The name of the whole site
+    SITE_NAME = os.path.basename(DJANGO_ROOT)
+
+    # Collect static files here
+    STATIC_ROOT = os.path.join(DJANGO_ROOT, 'resources', 'static')
+
+    # Collect media files here
+    MEDIA_ROOT = os.path.join(DJANGO_ROOT, 'resources', 'media')
 
     # SECURITY WARNING: keep the secret key used in production secret!
     SECRET_KEY = values.SecretValue()
@@ -35,6 +46,8 @@ class Common(Configuration):
 
         'django_extensions',
         'debug_toolbar',
+        
+        'movies',
     ]
 
     MIDDLEWARE_CLASSES = [
@@ -70,23 +83,27 @@ class Common(Configuration):
     # Database
     # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
     DATABASES = values.DatabaseURLValue(
-        'sqlite:///{}'.format(os.path.join(BASE_DIR, 'db.sqlite3'))
+        'sqlite:///{}'.format(os.path.join(DJANGO_ROOT, 'db.sqlite3'))
     )
 
     # Password validation
     # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
     AUTH_PASSWORD_VALIDATORS = [
         {
-            'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+            'NAME': ('django.contrib.auth.password_validation.'
+                     'UserAttributeSimilarityValidator'),
         },
         {
-            'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+            'NAME': ('django.contrib.auth.password_validation.'
+                     'MinimumLengthValidator'),
         },
         {
-            'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+            'NAME': ('django.contrib.auth.password_validation.'
+                     'CommonPasswordValidator'),
         },
         {
-            'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+            'NAME': ('django.contrib.auth.password_validation.'
+                     'NumericPasswordValidator'),
         },
     ]
 
@@ -94,13 +111,15 @@ class Common(Configuration):
     # https://docs.djangoproject.com/en/1.9/topics/i18n/
     LANGUAGE_CODE = 'en-us'
 
-    TIME_ZONE = 'UTC'
+    TIME_ZONE = 'Asia/Kolkata'
 
     USE_I18N = True
 
     USE_L10N = True
 
     USE_TZ = True
+    
+    MEDIA_URL = '/media/'
 
     # Static files (CSS, JavaScript, Images)
     # https://docs.djangoproject.com/en/1.9/howto/static-files/

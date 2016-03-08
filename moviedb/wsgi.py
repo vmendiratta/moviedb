@@ -5,8 +5,9 @@ For more information on this file, see
 https://docs.djangoproject.com/en/1.9/howto/deployment/wsgi/
 """
 import os
-import dotenv
 
+import dotenv
+from configurations.wsgi import get_wsgi_application
 
 try:
     dotenv.read_dotenv(
@@ -27,6 +28,5 @@ else:
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'moviedb.settings')
 os.environ.setdefault('DJANGO_CONFIGURATION', settings.title())
 
-from configurations.wsgi import get_wsgi_application
 
 application = get_wsgi_application()
