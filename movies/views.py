@@ -4,8 +4,8 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 
-from . import forms
-from . import models
+from . import forms, models
+
 
 # Create your views here.
 

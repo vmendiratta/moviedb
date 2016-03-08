@@ -3,6 +3,7 @@ from django.forms.models import inlineformset_factory
 
 from . import models
 
+
 class MovieForm(ModelForm):
     class Meta:
         model = models.Movie

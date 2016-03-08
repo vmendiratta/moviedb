@@ -4,6 +4,7 @@ from django.db import models
 
 from . import choices
 
+
 # Create your models here.
 
 class Genre(models.Model):
