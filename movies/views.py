@@ -18,7 +18,9 @@ class MovieCreateView(CreateView):
         form_class = self.get_form_class()
         form = self.get_form(form_class)
         character_form = forms.CharacterFormSet()
-        return self.render_to_response(self.get_context_data(form=form, character_form=character_form))
+        return self.render_to_response(self.get_context_data
+                                       (form=form,
+                                        character_form=character_form))
 
     def post(self, request, *args, **kwargs):
         self.object = None
@@ -37,7 +39,9 @@ class MovieCreateView(CreateView):
         return HttpResponseRedirect(self.get_success_url() % self.object.pk)
 
     def form_invalid(self, form, character_form):
-        return self.render_to_response(self.get_context_data(form=form, character_form=character_form))
+        return self.render_to_response(self.get_context_data
+                                       (form=form,
+                                        character_form=character_form))
 
 
 class MovieDetailView(DetailView):

@@ -12,4 +12,6 @@ class MovieForm(ModelForm):
             'release_date', 'plot', 'genre'
         ]
 
-CharacterFormSet = inlineformset_factory(models.Movie, models.Character, fields=('actor', 'name'), extra=2)
+CharacterFormSet = inlineformset_factory(models.Movie,
+                                         models.Character,
+                                         fields=('actor', 'name'), extra=2)
